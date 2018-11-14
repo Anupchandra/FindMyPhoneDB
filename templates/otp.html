@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FindMyPhoneDB</title>
+    <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon2.png"/>
+    <link rel="stylesheet" href="static/fonts/material-icon/css/material-design-iconic-font.min.css"/>
+    <link rel="stylesheet" href="static/css/style.css"/>
+</head>
+<body>
+    <div class="main">
+
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Verify OTP</h2>
+                        <form method="POST" class="register-form" id="otp-form" action="/otpverify">
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" id="email" placeholder="Email"/>
+                            </div>
+                              <div class="form-group">
+                                <label for="phone"><i class="zmdi zmdi-phone"></i></label>
+                                <input type="text" name="phone" id="phone" placeholder="Mobile Number" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="otp"><i class="zmdi zmdi-key material-icons-name"></i></label>
+                                <input type="text" name="otp" id="otp" placeholder="OTP"/>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="otpver" id="otpver" class="form-submit" value="Verify"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="static/images/signup.png" alt="sign up image"></figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <script src="static/js/jquery-3.3.1.min.js"></script>
+    <script src="static/js/main.js"></script>
+    <script src="static/js/login.js"></script>
+
+</body>
+</html>

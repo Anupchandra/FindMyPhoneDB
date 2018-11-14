@@ -1,0 +1,62 @@
+{% extends "MainLayout.html" %}
+
+ {% block content %}
+
+     <ul class="nav nav-pills" role="tablist" style="padding-left: 90px;">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="pill" href="#miss">Report Missing</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#found">Report Found</a>
+    </li>
+  </ul>
+     <br>
+     <div class="tab-content">
+     <div id="miss" class="container tab-pane active">
+<div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Report Device as Stolen</h2>
+                        <form method="POST" class="register-form" id="change-form" action="/changereg" onSubmit="if(!confirm('Are you sure you want to mark this device as Stolen?')){return false;}">
+                            <div class="form-group">
+                                <label for="devph"><i class="zmdi zmdi-phone material-icons-name"></i></label>
+                                <input type="text" name="devph" id="devph" placeholder="Device Phone Number" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="devser"><i class="zmdi zmdi-memory material-icons-name"></i></label>
+                                <input type="text" name="devser" id="devser" placeholder="Serial Number/IMEI" required/>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signdev" id="signdev" class="form-submit" value="Report"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image" style="margin-top: 0px">
+                        <img src="static/images/alert.png" alt="sign up image">
+                    </div>
+                </div>
+     </div>
+          <div id="found" class="container tab-pane fade">
+<div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Report Device as Secure</h2>
+                        <form method="POST" class="register-form" id="change-form2" action="/changereg2" onSubmit="if(!confirm('Are you sure you want to mark this device as Found?')){return false;}">
+                            <div class="form-group">
+                                <label for="devph"><i class="zmdi zmdi-phone material-icons-name"></i></label>
+                                <input type="text" name="devph" id="devph" placeholder="Device Phone Number" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="devser"><i class="zmdi zmdi-memory material-icons-name"></i></label>
+                                <input type="text" name="devser" id="devser" placeholder="Serial Number/IMEI" required/>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signdev" id="signdev" class="form-submit" value="Report"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image" style="margin-top: 0px">
+                        <img src="static/images/secure.png" alt="sign up image">
+                    </div>
+                </div>
+     </div>
+     </div>
+    {% endblock %}

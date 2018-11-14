@@ -1,0 +1,62 @@
+{% extends "MainLayout.html" %}
+{% block content %}
+    {% for item in rec %}
+<div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Device Status: <span id="myid">{{ item["Status"] }}</span></h2>
+                            <div class="form-group">
+                                <label for="devoem"><i class="zmdi zmdi-android-alt material-icons-name"></i></label>
+                                <h5 style="padding-left: 20px;padding-top: 9px">OEM: {{ item["OEM"] }}</h5>
+                            </div>
+                            <div class="form-group">
+                                <label for="devname"><i class="zmdi zmdi-smartphone material-icons-name"></i></label>
+                                <h5 style="padding-left: 20px;padding-top: 9px">Name/Model: {{ item["Name/Model"] }}</h5>
+                            </div>
+                            <div class="form-group">
+                                <label for="devcode"><i class="zmdi zmdi-smartphone-info material-icons-name"></i></label>
+                                <h5 style="padding-left: 20px;padding-top: 9px">Codename: {{ item["Codename"] }}</h5>
+                            </div>
+                            <div class="form-group">
+                                <label for="devph"><i class="zmdi zmdi-phone material-icons-name"></i></label>
+                                <h5 style="padding-left: 20px;padding-top: 9px">Phone: {{ item["Phone Number"] }}</h5>
+                            </div>
+                            <div class="form-group">
+                                <label for="devser"><i class="zmdi zmdi-memory material-icons-name"></i></label>
+                                <h5 style="padding-left: 20px;padding-top: 9px">Serial Number: {{ item["Serial Number"] }}</h5>
+                            </div>
+                            <div class="form-group">
+                                <label for="devimei1"><i class="zmdi zmdi-smartphone-lock material-icons-name"></i></label>
+                                <h5 style="padding-left: 20px;padding-top: 9px">IMEI 1: {{ item["IMEI 1"] }}</h5>
+                            </div>
+                            <div class="form-group">
+                                <label for="devimei2"><i class="zmdi zmdi-smartphone-lock material-icons-name"></i></label>
+                                <h5 style="padding-left: 20px;padding-top: 9px">IMEI 2: {{ item["IMEI 2s"] }}</h5>
+                            </div>
+                            <div class="form-group">
+                                <label for="devbuildno"><i class="zmdi zmdi-alert-octagon material-icons-name"></i></label>
+                                <h5 style="padding-left: 20px;padding-top: 9px">Build No.: {{ item["Build Number"] }}</h5>
+                            </div>
+                            <div class="form-group">
+                                <label for="devcolor"><i class="zmdi zmdi-invert-colors material-icons-name"></i></label>
+                                <h5 style="padding-left: 20px;padding-top: 9px">Colour: {{ item["Colour"] }}</h5>
+                            </div>
+                            <div class="form-group">
+                                <label for="devdesc"><i class="zmdi zmdi-comment-alt-text material-icons-name"></i></label>
+                            <h5 style="padding-left: 20px;padding-top: 9px">Description: {{ item["Description"] }}</h5>
+                            </div>
+                            <div class="form-group">
+                                <label for="devdate"><i class="zmdi zmdi-calendar-check material-icons-name"></i></label>
+                            <h5 style="padding-left: 20px;padding-top: 9px">Date Registered: {{ item["Date"] }}</h5>
+                            </div>
+                            <div class="form-group">
+                                <label for="devtime"><i class="zmdi zmdi-time material-icons-name"></i></label>
+                            <h5 style="padding-left: 20px;padding-top: 9px">Time Registered: {{ item["Time"] }}</h5>
+                            </div>
+                    </div>
+                    <div class="signup-image">
+                        <img src="static/images/add2.png" alt="sign up image" style="padding-top: 120px;">
+                    </div>
+                </div>
+{% endfor %}
+{% endblock %}
+
