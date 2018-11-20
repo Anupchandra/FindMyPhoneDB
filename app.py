@@ -142,8 +142,6 @@ def newdevice():
     dbpy.authenticate(os.environ["MUSERNAME"],os.environ["MPASSWORD"])
     UsersDevices = dbpy.UsersDevices
     rec = UsersDevices.find_one({"Username" : current_user.Name})
-    f = requests.request('GET', 'http://myip.dnsomatic.com')
-    ip = f.text
     if rec == None:
         new_rec = {"Username": current_user.Name, "Email": current_user.Email, "Phone Number" : current_user.Phone,"Devices": [{"OEM": data["devoem"],
                                                                                             "Name/Model": data[
