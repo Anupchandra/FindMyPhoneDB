@@ -161,7 +161,7 @@ def newdevice():
                                                                                             "Date": datetime.datetime.now().strftime(
                                                                                                 "%d:%m:%Y"),
                                                                                             "Time": datetime.datetime.now().strftime(
-                                                                                                "%H:%M:%S"),
+                                                                                                ),"%H:%M:%S"
                                                                                             "IP Address" : ip,
                                                                                             "Status": "Secure"}]}
         UsersDevices.insert_one(new_rec)
@@ -182,43 +182,52 @@ def newdevice():
         dbpy.authenticate(os.environ["MUSERNAME"],os.environ["MPASSWORD"])
         UsersDevices = dbpy.UsersDevices
         rec = UsersDevices.find_one({"Username": current_user.Name})
-        new_rec = {"OEM": data["devoem"],
-                    "Name/Model": data["devname"],
-                    "Codename": data["devcode"],
-                    "Phone Number": data["devph"],
-                    "Serial Number": data["devser"],
-                    "IMEI 1": data["devimei1"],
-                    "IMEI 2": data["devimei2"],
-                    "Build Number": data[
-                        "devbuildno"],
-                    "Colour": data["devcolor"],
-                    "Description": data["devdesc"],
-                    "Date": datetime.datetime.now().strftime(
-                        "%d:%m:%Y"),
-                    "Time": datetime.datetime.now().strftime(
-                        "%H:%M:%S"),
-                   "IP Address": ip,
-                    "Status": "Secure"}
-        rec["Devices"].append(new_rec)
-        UsersDevices.update_one(
-            {'_id': rec['_id']},
-            {
-                "$set": {
-                    "Devices" : rec["Devices"]
+        rec_ser = UsersDevices.find_one({"Devices" : {"$elemMatch" : {"Serial Number" : data["devser"]}}})
+        rec_imei1 = UsersDevices.find_one({"Devices" : {"$elemMatch" : {"IMEI 1" : data["devimei1"]}}})
+        rec_imei2 = UsersDevices.find_one({"Devices" : {"$elemMatch" : {"IMEI 2" : data["devimei2"]}}})
+        if rec_ser == None and rec_imei1 == None and rec_imei2 == None:
+            new_rec = {"OEM": data["devoem"],
+                        "Name/Model": data["devname"],
+                        "Codename": data["devcode"],
+                        "Phone Number": data["devph"],
+                        "Serial Number": data["devser"],
+                        "IMEI 1": data["devimei1"],
+                        "IMEI 2": data["devimei2"],
+                        "Build Number": data[
+                            "devbuildno"],
+                        "Colour": data["devcolor"],
+                        "Description": data["devdesc"],
+                        "Date": datetime.datetime.now().strftime(
+                            "%d:%m:%Y"),
+                        "Time": datetime.datetime.now().strftime(
+                            "%H:%M:%S"),
+                       "IP Address": ip,
+                        "Status": "Secure"}
+            rec["Devices"].append(new_rec)
+            UsersDevices.update_one(
+                {'_id': rec['_id']},
+                {
+                    "$set": {
+                        "Devices" : rec["Devices"]
+                    }
                 }
-            }
-        )
-        myclient = MongoClient("ds039231.mlab.com", 39231)
-        dbpy = myclient["findmyphonedb"]
-        dbpy.authenticate(os.environ["MUSERNAME"],os.environ["MPASSWORD"])
-        DeviceLogs = dbpy.DeviceLogs
-        log_rec = {"Username": current_user.Name, "Device Phone": data["devph"], "Device Serial": data["devser"],
-                   "Date": datetime.datetime.now().strftime("%d:%m:%Y"),
-                   "Time": datetime.datetime.now().strftime("%H:%M:%S"), "IP Address" : ip,"Status": "Device Registered"}
-        DeviceLogs.insert_one(log_rec)
-        return render_template("error.html", caption="Yippe!", error="Device Successfully Registered",
-                               details="Your Device is now registered, this will show up in your Dashboard Home",
-                               link="/loggedin", linkd="My Devices")
+            )
+            myclient = MongoClient("ds039231.mlab.com", 39231)
+            dbpy = myclient["findmyphonedb"]
+            dbpy.authenticate(os.environ["MUSERNAME"],os.environ["MPASSWORD"])
+            DeviceLogs = dbpy.DeviceLogs
+            log_rec = {"Username": current_user.Name, "Device Phone": data["devph"], "Device Serial": data["devser"],
+                       "Date": datetime.datetime.now().strftime("%d:%m:%Y"),
+                       "Time": datetime.datetime.now().strftime("%H:%M:%S"), "IP Address" : ip,"Status": "Device Registered"}
+            DeviceLogs.insert_one(log_rec)
+            return render_template("error.html", caption="Yippe!", error="Device Successfully Registered",
+                                   details="Your Device is now registered, this will show up in your Dashboard Home",
+                                   link="/loggedin", linkd="My Devices")
+        else:
+            return render_template("error.html", caption="Oops!", error="Device Already Registered",
+                                   details="It seems that this Device already belongs to someone. Please check the Details you have entered",
+                                   link="javascript:history.back()", linkd="Go Back")
+
 
 @app.route('/devicelog',methods=["GET","POST"])
 @login_required

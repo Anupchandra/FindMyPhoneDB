@@ -52,16 +52,19 @@
     });
 }); */
 
-let x = document.getElementById("myid");
-console.log(x.innerText);
-if (x.innerText == "Secure")
+let x = document.getElementsByClassName("myid");
+for (i = 0; i < x.length; i++) {
+    console.log(x.innerText);
+if (x[i].innerText == "Secure")
 {
-    x.style.color = "Green";
+    x[i].style.color = "Green";
 }
 else
 {
-    x.style.color = "Red";
+    x[i].style.color = "Red";
 }
+}
+
 
 var form = document.getElementById('register-form');
 
