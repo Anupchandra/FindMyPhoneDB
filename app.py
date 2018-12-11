@@ -161,7 +161,7 @@ def newdevice():
                                                                                             "Date": datetime.datetime.now().strftime(
                                                                                                 "%d:%m:%Y"),
                                                                                             "Time": datetime.datetime.now().strftime(
-                                                                                                ),"%H:%M:%S"
+                                                                                                "%H:%M:%S"),
                                                                                             "IP Address" : ip,
                                                                                             "Status": "Secure"}]}
         UsersDevices.insert_one(new_rec)

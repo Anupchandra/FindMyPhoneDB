@@ -54,7 +54,6 @@
 
 let x = document.getElementsByClassName("myid");
 for (i = 0; i < x.length; i++) {
-    console.log(x.innerText);
 if (x[i].innerText == "Secure")
 {
     x[i].style.color = "Green";
