@@ -74,7 +74,7 @@ urllib3==1.22
 vibora==0.0.6
 virtualenv==15.1.0
 web.py==0.40.dev1
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 wrapt==1.10.11
 WTForms==2.2.1
 yarl==1.1.1
