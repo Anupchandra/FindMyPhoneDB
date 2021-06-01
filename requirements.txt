@@ -70,7 +70,7 @@ six==1.11.0
 typed-ast==1.1.0
 Unidecode==1.0.22
 uritemplate==3.0.0
-urllib3==1.22
+urllib3==1.26.5
 vibora==0.0.6
 virtualenv==15.1.0
 web.py==0.40.dev1
