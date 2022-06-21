@@ -41,7 +41,7 @@ mccabe==0.6.1
 mongoengine==0.15.3
 more-itertools==4.2.0
 multidict==4.1.0
-numpy==1.14.2
+numpy==1.22.0
 oauth2client==4.1.2
 openpyxl==2.5.8
 pandas==0.23.4
